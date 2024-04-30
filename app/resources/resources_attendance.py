@@ -23,18 +23,18 @@ class GetAllAttendanceResource(Resource, ResponseHandler):
             return self.error_response("No Attendance found", 404)
             
         attendances_data = [{
-            "id":attendances.id,
-            "date_attendance_in":attendances.date_attendance_in,
-            "date_attendance_out":attendances.date_attendance_out,
-            "behaviour":attendances.behaviour
+            "id":attendance.id,
+            "date_attendance_in":attendance.date_attendance_in,
+            "date_attendance_out":attendance.date_attendance_out,
+            "behaviour":attendance.behaviour
         }for attendance in attendances]
             
         return self.success_response("Success",
-                                        attendances_data=attendances_data,
-                                        id=attendances.id,
-                                        date_attendance_in=attendances.date_attendance_in,
-                                        date_attendance_out=attendances.date_attendance_out,
-                                        behaviour=attendances.behaviourkelas,          
+                                        data=attendances_data,
+                                        # id=attendances.id,
+                                        # date_attendance_in=attendances.date_attendance_in,
+                                        # date_attendance_out=attendances.date_attendance_out,
+                                        # behaviour=attendances.behaviour,          
                                     )
  
 
@@ -85,7 +85,7 @@ class AttendanceResource(Resource, ResponseHandler):
             
             return self.success_response("Success", 
                                                     data=attendance_data,
-                                                    id=attendance.id
+                                                    # id=attendance.id
                                                     )
         
     @jwt_required()

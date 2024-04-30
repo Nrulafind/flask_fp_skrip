@@ -62,7 +62,8 @@ class tbl_attendances(db.Model):
 class tbl_semesters(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nama_semester = db.Column(db.String(50))
-    grade = db.Column(db.Float)
+    mid_grade = db.Column(db.Float)
+    end_grade = db.Column(db.Float)
     prediction = db.Column(db.JSON)
     date = db.Column(db.Date)
     student_id = db.Column(db.Integer, db.ForeignKey('tbl_students.id', ondelete='CASCADE', onupdate='CASCADE'))

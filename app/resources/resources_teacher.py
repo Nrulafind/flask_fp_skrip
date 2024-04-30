@@ -18,20 +18,22 @@ class GetAllTeacherResource(Resource, ResponseHandler):
             return self.error_response("Unauthorized access", 403)
             
         teachers = tbl_teachers.query.all()
-            
+        
         if not teachers:
             return self.error_response("No Teacher found", 404)
+     
+        teachers_data = [{
+            "id":teacher.id,
+            "nik":teacher.nik,
+            "nama":teacher.nama,
+            "alamat":teacher.alamat,
+            "status":teacher.status
+        }for teacher in teachers]
             
-            teachers_data = [{
-                "id":teacher.id,
-                "nik":teacher.nik,
-                "nama":teacher.nama,
-                "alamat":teacher.alamat,
-                "status":teacher.status
-            }for teacher in teachers]
-            
-            return self.success_response("Success", teachers_data=teachers_data)
- 
+        return self.success_response("Success", 
+                                        data=teachers_data
+                                    )       
+
 
 class PostTeacherResource(Resource, ResponseHandler):
     @jwt_required()
@@ -80,7 +82,7 @@ class TeacherResource(Resource, ResponseHandler):
             "status":teacher.status
             }
             
-            return self.success_response("Success", teacher_data=teacher_data)
+            return self.success_response("Success", data=teacher_data)
     
     @jwt_required()
     def put(self, teacher_id):

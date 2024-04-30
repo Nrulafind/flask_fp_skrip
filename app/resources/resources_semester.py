@@ -25,7 +25,8 @@ class GetAllSemesterResource(Resource, ResponseHandler):
         semesters_data = [{
             "id":semester.id,
             "nama_semester":semester.nama_semester,
-            "grade":semester.grade,
+            "mid_grade":semester.mid_grade,
+            "end_grade":semester.end_grade,
             "prediction":semester.prediction,
             "date":semester.date,
             "student_id":semester.student_id,
@@ -33,14 +34,14 @@ class GetAllSemesterResource(Resource, ResponseHandler):
         }for semester in semesters]
             
         return self.success_response("Success", 
-                                    semesters_data=semesters_data,
-                                    id=semester.id,
-                                    nama_semester=semester.nama_semester,
-                                    grade=semester.grade,
-                                    prediction=semester.prediction,
-                                    date=semester.date,
-                                    student_id=semester.student_id,
-                                    teacher_id=semester.teacher_id
+                                    data=semesters_data,
+                                    # id=semester.id,
+                                    # nama_semester=semester.nama_semester,
+                                    # grade=semester.grade,
+                                    # prediction=semester.prediction,
+                                    # date=semester.date,
+                                    # student_id=semester.student_id,
+                                    # teacher_id=semester.teacher_id
                                      )
  
 
@@ -57,7 +58,8 @@ class PostSemesterResource(Resource, ResponseHandler):
         
         new_semesters = tbl_semesters(
             nama_semester=data.get('nama_semester'),
-            grade=data.get('grade'),
+            mid_grade=data.get('mid_grade'),
+            end_grade=data.get('end_grade'),
             prediction=data.get('prediction'),
             date=data.get('date'),
             student_id=data.get('student_id'),
@@ -89,14 +91,15 @@ class SemesterResource(Resource, ResponseHandler):
             semester_data = {
             "id":semester.id,
             "nama_semester":semester.nama_semester,
-            "grade":semester.grade,
+            "mid_grade":semester.mid_grade,
+            "end_grade":semester.end_grade,
             "prediction":semester.prediction,
             "date":semester.date,
             "student_id":semester.student_id,
             "teacher_id":semester.teacher_id
             }
             
-            return self.success_response("Success", semester_data=semester_data)
+            return self.success_response("Success", data=semester_data)
     
     @jwt_required()
     def put(self, semester_id):
@@ -114,7 +117,8 @@ class SemesterResource(Resource, ResponseHandler):
         data = request.get_json()
         
         semester.nama_semester = data.get('nama_semester')
-        semester.grade = data.get('grade')
+        semester.mid_grade = data.get('mid_grade')
+        semester.end_grade = data.get('end_grade')
         semester.prediction = data.get('prediction')
         semester.date = data.get('date')
         semester.student_id = data.get('student_id')
@@ -141,8 +145,10 @@ class SemesterResource(Resource, ResponseHandler):
 
         if 'nama_semester' in data:
             semester.nama_semester = data['nama_semester']
-        if 'grade' in data:
-            semester.grade = data['grade']
+        if 'mid_grade' in data:
+            semester.grade = data['mid_grade']
+        if 'end_grade' in data:
+            semester.grade = data['end_grade']
         if 'prediction' in data:
             semester.prediction = data['prediction']
         if 'date' in data:

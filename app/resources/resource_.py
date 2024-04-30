@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask import json
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token, create_refresh_token
@@ -68,11 +68,10 @@ class login(Resource, ResponseHandler):
         identity = {'username': username, 'email': email, 'role': user.role}
         access_token = create_access_token(identity=identity)
         refresh_token = create_refresh_token(identity=identity)
-        return self.success_response(
-            "Login successful",
-            access_token=access_token,
-            refresh_token=refresh_token
-            )
+        response = self.success_response(message="Login successful", access_token=access_token, refresh_token=refresh_token)
+        # response.set_cookie('access_token', access_token, httponly=True, secure=True)
+        # response.set_cookie('refresh_token', refresh_token, httponly=True, secure=True)
+        return response
     
 class refresh(Resource, ResponseHandler):
     @jwt_required(refresh=True)

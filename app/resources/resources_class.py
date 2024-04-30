@@ -30,9 +30,9 @@ class GetAllClassResource(Resource, ResponseHandler):
             
         return self.success_response("Success", 
                                     data=class_data_,
-                                    id=kls.id,
-                                    nama_kelas=kls.nama_kelas,
-                                    wali_kelas=kls.wali_kelas
+                                    # id=kls.id,
+                                    # nama_kelas=kls.nama_kelas,
+                                    # wali_kelas=kls.wali_kelas
                                     )
 
 class PostClassResource(Resource, ResponseHandler):

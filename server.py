@@ -13,6 +13,7 @@ from app.resources.resources_prediction import PostPredictions
 from app.resources.resources_semester import SemesterResource, GetAllSemesterResource, PostSemesterResource, DeleteAllSemesterResource 
 from app.resources.resources_student import StudentResource, PostStudentResource, GetAllStudentResource, DeleteAllStudentResource
 from app.resources.resources_teacher import TeacherResource, GetAllTeacherResource, PostTeacherResource, DeleteAllTeacherResource
+from app.resources.resources_user import userResource, GetAlluserResource, PostuserResource, DeleteAlluserResource
 
 from app.config import Config
 import os
@@ -67,6 +68,12 @@ api.add_resource(GetAllTeacherResource, '/api/teacher')
 api.add_resource(PostTeacherResource, '/api/teacher')
 api.add_resource(TeacherResource, '/api/teacher/<teacher_id>')
 api.add_resource(DeleteAllTeacherResource, '/api/teacher')
+
+api.add_resource(GetAlluserResource, '/api/user')
+api.add_resource(PostuserResource, '/api/user')
+api.add_resource(userResource, '/api/user/<user_id>')
+api.add_resource(DeleteAlluserResource, '/api/user')
+
 
 
 if __name__ == '__main__':

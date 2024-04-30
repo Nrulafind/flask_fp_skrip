@@ -30,11 +30,11 @@ class GetAllParentResource(Resource, ResponseHandler):
         }for parent in parents]
             
         return self.success_response("Success",
-                                        parents_data=parents_data,
-                                        id=parent.id,
-                                        nama=parent.nama,
-                                        alamat=parent.alamat,
-                                        student_id=parent.student_id          
+                                        data=parents_data,
+                                        # id=parent.id,
+                                        # nama=parent.nama,
+                                        # alamat=parent.alamat,
+                                        # student_id=parent.student_id          
                                     )
  
 
@@ -84,7 +84,7 @@ class ParentResource(Resource, ResponseHandler):
             "student_id":parent.student_id
             }
             
-            return self.success_response("Success", parent_data=parent_data)
+            return self.success_response("Success", data=parent_data)
         
     @jwt_required()
     def put(self, parent_id):
