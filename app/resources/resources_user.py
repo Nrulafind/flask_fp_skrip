@@ -79,7 +79,7 @@ class userResource(Resource, ResponseHandler):
             user_data = {
             "id":user.id,
             "email":user.email,
-            "user_name":user.uset_name,
+            "user_name":user.user_name,
             "password":user.password,
             "role":user.role,
             "status":user.status
