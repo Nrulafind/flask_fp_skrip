@@ -39,7 +39,7 @@ api.add_resource(refresh, '/api/refresh')
 
 api.add_resource(GetAllAttendanceResource, '/api/attendance')
 api.add_resource(PostAttendanceResource, '/api/attendance')
-api.add_resource(AttendanceResource, '/api/attendance/<attendance_id>/')
+api.add_resource(AttendanceResource, '/api/attendance/<attendance_id>')
 api.add_resource(DeleteAllAttendanceResource, '/api/attendance')
 
 api.add_resource(GetAllClassResource, '/api/class')
