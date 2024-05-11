@@ -2,7 +2,7 @@ from flask import Flask,request, jsonify
 from flask import json
 from flask_restful import Api 
 from flask_jwt_extended import JWTManager
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_bcrypt import Bcrypt
 from app.models.model import db, tbl_users, tbl_students  # Import the db instance
 from app.resources.resource_ import get, login, register, refresh
@@ -20,8 +20,9 @@ import os
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app)
-
+CORS(app, origin='*')
+# app.config['CORS_HEADERS'] = 'Content-Type'
+# cross_origin()
 # Use configuration from config.py
 app.config.from_object(Config)
 
